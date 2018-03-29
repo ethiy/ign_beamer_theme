@@ -40,7 +40,8 @@
 \defbeamertemplate*{footline}{}
 {
     \begin{tikzpicture}
-        \path (0, 0) node (logo) {\includegraphics[height=0.25cm]{images/logos/ign_logo_bottom}};
+        \path (0, 0) node (origin) {};
+        \path (origin.east) + (.5, 0) node (logo) {\includegraphics[height=0.25cm]{images/logos/ign_logo_bottom}};
         \path (logo.east) + (4, 0) node (title) {
             \begin{beamercolorbox}[
                 wd=6cm,
@@ -66,6 +67,7 @@
                 \usebeamerfont{framenumber}\insertframenumber\par
             \end{beamercolorbox}
         };
+        \draw[thick, color=IGNGrey!50] (.28, .25) -- (12.25, .25);
     \end{tikzpicture}
 }
 \mode<all>
