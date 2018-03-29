@@ -13,4 +13,91 @@
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{blocks}[rounded][shadow=true]
 
+\setbeamerfont{sectionnumber}{size=\fontsize{60}{60}\selectfont}
+\setbeamerfont{sectiontitle}{size=\fontsize{30}{30}\selectfont}
+
+\newsavebox \tramesectionbox
+\savebox \tramesectionbox{
+    \begin{tikzpicture}
+        \begin{axis}[axis lines=none, width=8.5cm, height=11.5cm, at={(0cm, 0cm)}]
+            \foreach \line in {1,2,...,40}{
+                \addplot[
+                    only marks,
+                    color=IGNGrey,
+                    mark=*,
+                    mark size=.05pt,
+                    samples=40
+                ] {\line};
+            }
+        \end{axis}
+    \end{tikzpicture}
+}
+\newsavebox \sectionnumberbox
+\savebox \sectionnumberbox{
+    \begin{tikzpicture}
+        \fill[top color=IGNDarkGreen, bottom color = IGNGreen]
+        (0, 1.5)
+        -- (2.5, 1.2)
+        -- (3, -.9)
+        -- (-.5, -1.5);
+    \end{tikzpicture}
+}
+\AtBeginSection[]{
+    \begin{frame}<beamer>
+        \begin{tikzpicture}
+            \path (0, -2) node (trame) {\usebox \tramesectionbox};
+            \path (trame) + (1, 1) node (section_number_box) {\usebox \sectionnumberbox};
+            \path (section_number_box) + (0.2, .5) node (section_number) {
+                \begin{beamercolorbox}[
+                    wd=2cm,
+                    sep=8pt
+                ]{sectionnumber}
+                    \usebeamerfont{sectionnumber} {\bf \insertsectionnumber\par}
+                \end{beamercolorbox}
+            };
+            \path (trame.east) + (1, -1) node (sectiontitle) {
+                \begin{beamercolorbox}[
+                    wd=7cm,
+                    sep=8pt
+                ]{sectiontitle}
+                    \usebeamerfont{sectiontitle} \insertsection\par
+                \end{beamercolorbox}
+            };
+        \end{tikzpicture}
+    \end{frame}
+}
+
+\AtBeginSubSection[]{
+    \begin{frame}<beamer>
+        \begin{tikzpicture}
+            \path (0, -2) node (trame) {\usebox \tramesectionbox};
+            \path (trame) + (1, 1) node (section_number_box) {\usebox \sectionnumberbox};
+            \path (section_number_box) + (0.2, .5) node (section_number) {
+                \begin{beamercolorbox}[
+                    wd=2cm,
+                    sep=8pt
+                ]{sectionnumber}
+                    \usebeamerfont{sectionnumber} {\bf \insertsectionnumber\par}
+                \end{beamercolorbox}
+            };
+            \path (trame.east) + (1, -1) node (sectiontitle) {
+                \begin{beamercolorbox}[
+                    wd=7cm,
+                    sep=8pt
+                ]{sectiontitle}
+                    \usebeamerfont{sectiontitle} \insertsection\par
+                \end{beamercolorbox}
+            };
+            \path (sectiontitle) + (0, -1) node (sectionsubtitle) {
+                \begin{beamercolorbox}[
+                    wd=7cm,
+                    sep=8pt
+                ]{sectionsubtitle}
+                    \usebeamerfont{sectionsubtitle} \insertsubsection\par
+                \end{beamercolorbox}
+            };
+        \end{tikzpicture}
+    \end{frame}
+}
+
 \mode<all>
