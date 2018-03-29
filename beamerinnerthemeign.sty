@@ -1,0 +1,93 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerinnerthemeign}[2018/03/29 IGN France color theme]
+
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\RequirePackage{adjustbox}
+
+\usetikzlibrary{backgrounds, positioning}
+\pgfplotsset{compat=1.13}
+
+
+\usecolortheme{ign}
+
+\mode<presentation>
+
+\setbeamertemplate{background}{
+    \begin{tikzpicture}
+        \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+        \ifnum\thepage>1\relax%
+            \fill[white,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);
+        \fi
+    \end{tikzpicture}
+}
+
+\newsavebox \tramebox
+\savebox \tramebox{
+    \begin{tikzpicture}
+        \begin{axis}[axis lines=none, width=8cm, height=6cm, at={(0cm, 0cm)}]
+            \foreach \line in {1,2,...,30}{
+                \addplot[
+                    only marks,
+                    color=IGNGrey,
+                    mark=*,
+                    mark size=.05pt,
+                    samples=35
+                ] {\line};
+            }
+        \end{axis}
+    \end{tikzpicture}
+}
+
+\newsavebox \titlebox
+\savebox \titlebox{
+    \begin{tikzpicture}
+        \fill[top color=IGNDarkGreen, bottom color = IGNGreen]
+        (-2.8, 2.5)
+        -- (2.5, 2)
+        -- (2.8, -1)
+        -- (-1.5, -1.5)
+        -- (-3.2, 0);
+    \end{tikzpicture}
+}
+\defbeamertemplate*{title page}{ign}[1][]
+{
+    \begin{tikzpicture}
+        \path (0, 0) + (-10, 4) node (logo) {
+            \includegraphics[width=2cm]{images/logos/ign_logo}
+        };
+        \path (logo.south east) + (3.125, -3.5) node (amiens) {
+            \adjincludegraphics[
+                width=10cm,
+                trim={0 0 0 {10cm}},
+                clip
+            ]{images/logos/amiens}
+        };
+        \path (logo.west) + (6, -1) node (trame) {\usebox \tramebox};
+        \path (trame.east) + (-2, -.5) node (title_box) {\usebox \titlebox};
+        \path (title_box) node (title) {
+            \begin{beamercolorbox}[
+                wd=12cm,
+                leftskip=3cm,
+                sep=8pt,
+                #1
+            ]{title page header}
+              \usebeamerfont{title}\inserttitle\par%
+            \end{beamercolorbox}
+        };
+    \end{tikzpicture}
+  %  \vskip6cm%
+    %
+  %   \vskip0.75cm%
+  %   \begin{beamercolorbox}[wd=12cm,leftskip=3cm,#1]{author}
+  %     \usebeamerfont{author}\insertauthor%
+  %   \end{beamercolorbox}
+  %    \vskip0.2cm%
+  %   \begin{beamercolorbox}[wd=12cm,leftskip=3cm,#1]{date}
+  %     \usebeamerfont{author}\insertdate%
+  %   \end{beamercolorbox}
+  % \vfill
+}
+
+\setbeamertemplate{items}[square]
+\setbeamertemplate{sections/subsections in toc}[square]
