@@ -1,0 +1,4 @@
+{
+  "root" : "sample.tex",
+  "latex_ext": [".tikz"]
+}
