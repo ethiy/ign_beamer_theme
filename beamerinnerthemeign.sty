@@ -65,28 +65,64 @@
         };
         \path (logo.west) + (6, -1) node (trame) {\usebox \tramebox};
         \path (trame.east) + (-2, -.5) node (title_box) {\usebox \titlebox};
-        \path (title_box) node (title) {
+        \path (title_box) + (0, .75) node (title) {
             \begin{beamercolorbox}[
-                wd=12cm,
-                leftskip=3cm,
+                wd=5.8cm,
                 sep=8pt,
                 #1
             ]{title page header}
-              \usebeamerfont{title}\inserttitle\par%
+              \usebeamerfont{title}\inserttitle\par
+            \end{beamercolorbox}
+        };
+        \path (title.south) + (0, -.3) node (subtitle) {
+            \begin{beamercolorbox}[
+                wd=6cm,
+                sep=8pt,
+                #1
+            ]{subtitle page header}
+                \usebeamerfont{subtitle}
+                \begin{center}
+                    \insertsubtitle\par
+                \end{center}
+            \end{beamercolorbox}
+        };
+        \path (trame.south) + (-.9, -1.25) node (author) {
+            \begin{beamercolorbox}[
+                wd=4cm,
+                sep=8pt,
+                #1
+            ]{author}
+                \usebeamerfont{author}
+                \begin{center}
+                    \insertauthor\par
+                \end{center}
+            \end{beamercolorbox}
+        };
+        \path (author.south) + (0, -.15) node (institute) {
+            \begin{beamercolorbox}[
+                wd=4cm,
+                sep=8pt,
+                #1
+            ]{institute}
+                \usebeamerfont{institute}
+                \begin{center}
+                    \insertinstitute\par
+                \end{center}
+            \end{beamercolorbox}
+        };
+        \path (institute.south) + (0, -.1) node (date) {
+            \begin{beamercolorbox}[
+                wd=6cm,
+                sep=8pt,
+                #1
+            ]{date}
+                \usebeamerfont{date}
+                \begin{center}
+                    \insertdate\par
+                \end{center}
             \end{beamercolorbox}
         };
     \end{tikzpicture}
-  %  \vskip6cm%
-    %
-  %   \vskip0.75cm%
-  %   \begin{beamercolorbox}[wd=12cm,leftskip=3cm,#1]{author}
-  %     \usebeamerfont{author}\insertauthor%
-  %   \end{beamercolorbox}
-  %    \vskip0.2cm%
-  %   \begin{beamercolorbox}[wd=12cm,leftskip=3cm,#1]{date}
-  %     \usebeamerfont{author}\insertdate%
-  %   \end{beamercolorbox}
-  % \vfill
 }
 
 \setbeamertemplate{items}[square]
