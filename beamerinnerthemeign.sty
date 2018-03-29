@@ -125,5 +125,24 @@
     \end{tikzpicture}
 }
 
-\setbeamertemplate{items}[square]
-\setbeamertemplate{sections/subsections in toc}[square]
+
+\newsavebox \itembox
+\savebox \itembox{
+    \begin{tikzpicture}
+        \fill[top color=IGNDarkGreen, bottom color = IGNGreen]
+        (-.07, .08)
+        -- (.09, .025)
+        -- (.1, -.075)
+        -- (-.1, -.1);
+    \end{tikzpicture}
+}
+\setbeamertemplate{items}{
+    \begin{tikzpicture}
+        \node {\usebox \itembox};
+    \end{tikzpicture}
+}
+\setbeamertemplate{sections/subsections in toc}{
+    bg=\begin{tikzpicture}
+        \node {\usebox \itembox};
+    \end{tikzpicture}
+}
