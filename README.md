@@ -1,2 +1,1 @@
-# cst
-`comité de suivi de thèse` presentation.
+# IGN France beamer theme
