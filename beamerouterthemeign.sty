@@ -1,0 +1,27 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerouterthemeign}[2018/03/29 IGN France color theme]
+
+\usecolortheme{ign}
+
+\mode<presentation>
+
+\defbeamertemplate*{frametitle}{ign}[1][]
+{
+    \vskip .5cm
+    \begin{beamercolorbox}[wd=\paperwidth,ht=1.2cm]{frametitle}
+        \begin{tikzpicture}
+        \useasboundingbox[fill=white](0,0) rectangle(\the\paperwidth,1.2);
+        \fill[IGNGreen] (.5, 0) rectangle(\the\paperwidth,1.2);
+        \ifx\insertframesubtitle\@empty{
+            \node[anchor=west,font=\large] at (1,0.61){\insertframetitle};
+        }
+        \else{
+            \node[anchor= west,font=\large] at (1,0.81){\insertframetitle};%
+            \node[anchor= west,font=\small] at (1,0.41){\insertframesubtitle};
+        }
+        \fi
+        \end{tikzpicture}
+    \end{beamercolorbox}
+}
+
+\mode<all>
