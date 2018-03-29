@@ -1,6 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerouterthemeign}[2018/03/29 IGN France color theme]
 
+\RequirePackage{graphicx}
+
+
 \usecolortheme{ign}
 
 \mode<presentation>
@@ -24,4 +27,45 @@
     \end{beamercolorbox}
 }
 
+\newsavebox \framenumberbox
+\savebox \framenumberbox{
+    \begin{tikzpicture}
+        \fill[top color=IGNDarkGreen, bottom color = IGNGreen]
+        (0, .15)
+        -- (.25, .12)
+        -- (.3, -.09)
+        -- (-.05, -.15);
+    \end{tikzpicture}
+}
+\defbeamertemplate*{footline}{}
+{
+    \begin{tikzpicture}
+        \path (0, 0) node (logo) {\includegraphics[height=0.25cm]{images/logos/ign_logo_bottom}};
+        \path (logo.east) + (4, 0) node (title) {
+            \begin{beamercolorbox}[
+                wd=6cm,
+                sep=8pt
+            ]{shorttitle footer}
+                \usebeamerfont{shorttitle}\insertshorttitle\par
+            \end{beamercolorbox}
+        };
+        \path (title.east) + (1, 0) node (date) {
+            \begin{beamercolorbox}[
+                wd=2cm,
+                sep=8pt
+            ]{shortdate footer}
+                \usebeamerfont{shortdate}\insertshortdate\par
+            \end{beamercolorbox}
+        };
+        \path (date.east) + (2, 0) node (framenumber_box) {\usebox \framenumberbox};
+        \path (framenumber_box) + (.66, 0) node {
+            \begin{beamercolorbox}[
+                wd=2cm,
+                sep=8pt
+            ]{framenumber footer}
+                \usebeamerfont{framenumber}\insertframenumber\par
+            \end{beamercolorbox}
+        };
+    \end{tikzpicture}
+}
 \mode<all>
