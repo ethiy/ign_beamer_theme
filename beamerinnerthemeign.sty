@@ -131,23 +131,6 @@
 }
 
 
-\newsavebox \itembox
-\savebox \itembox{
-    \begin{tikzpicture}
-        \fill[top color=IGNDarkGreen, bottom color = IGNGreen]
-        (-.07, .08)
-        -- (.09, .025)
-        -- (.1, -.075)
-        -- (-.1, -.1);
-    \end{tikzpicture}
-}
-\setbeamertemplate{itemize        item}{
-    \begin{tikzpicture}
-        \node {\usebox \itembox};
-    \end{tikzpicture}
-}
-
-
 \setbeamertemplate{beginsection}{
     \begin{tikzpicture}
         \path (0, -2) node (trame) {\usebox \tramesectionbox};
