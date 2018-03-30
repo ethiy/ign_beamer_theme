@@ -60,12 +60,15 @@
             \end{beamercolorbox}
         };
         \path (date.east) + (2, 0) node (framenumber_box) {\usebox \framenumberbox};
-        \path (framenumber_box) + (.66, 0) node {
+        \path (framenumber_box) + (0, 0) node {
             \begin{beamercolorbox}[
                 wd=2cm,
                 sep=8pt
             ]{framenumber footer}
-                \usebeamerfont{framenumber}\insertframenumber\par
+                \usebeamerfont{framenumber}
+                \begin{center}
+                    \insertframenumber\par
+                \end{center}
             \end{beamercolorbox}
         };
         \draw[thick, color=IGNGrey!50] (.28, .25) -- (12.25, .25);
