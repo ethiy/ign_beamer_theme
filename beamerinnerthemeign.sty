@@ -127,6 +127,7 @@
             \end{beamercolorbox}
         };
     \end{tikzpicture}
+    \addtocounter{framenumber}{-1}
 }
 
 
@@ -143,6 +144,61 @@
 \setbeamertemplate{itemize        item}{
     \begin{tikzpicture}
         \node {\usebox \itembox};
+    \end{tikzpicture}
+}
+
+
+\setbeamertemplate{beginsection}{
+    \begin{tikzpicture}
+        \path (0, -2) node (trame) {\usebox \tramesectionbox};
+        \path (trame) + (1, 1) node (section_number_box) {\usebox \sectionnumberbox};
+        \path (section_number_box) + (0.2, .5) node (section_number) {
+            \begin{beamercolorbox}[
+                wd=2cm,
+                sep=8pt
+            ]{sectionnumber}
+                \usebeamerfont{sectionnumber} {\bf \insertsectionnumber\par}
+            \end{beamercolorbox}
+        };
+        \path (trame.east) + (1, -1) node (sectiontitle) {
+            \begin{beamercolorbox}[
+                wd=7cm,
+                sep=8pt
+            ]{sectiontitle}
+                \usebeamerfont{sectiontitle} \insertsection\par
+            \end{beamercolorbox}
+        };
+    \end{tikzpicture}
+}
+
+\setbeamertemplate{beginsubsection}{
+    \begin{tikzpicture}
+        \path (0, -2) node (trame) {\usebox \tramesectionbox};
+        \path (trame) + (1, 1) node (section_number_box) {\usebox \sectionnumberbox};
+        \path (section_number_box) + (0.2, .5) node (section_number) {
+            \begin{beamercolorbox}[
+                wd=2cm,
+                sep=8pt
+            ]{sectionnumber}
+                \usebeamerfont{sectionnumber} {\bf \insertsectionnumber\par}
+            \end{beamercolorbox}
+        };
+        \path (trame.east) + (1, -1) node (sectiontitle) {
+            \begin{beamercolorbox}[
+                wd=7cm,
+                sep=8pt
+            ]{sectiontitle}
+                \usebeamerfont{sectiontitle} \insertsection\par
+            \end{beamercolorbox}
+        };
+        \path (sectiontitle.south) + (2, -.2) node (sectionsubtitle) {
+            \begin{beamercolorbox}[
+                wd=7cm,
+                sep=8pt
+            ]{sectionsubtitle}
+                \usebeamerfont{sectionsubtitle} \insertsubsection\par
+            \end{beamercolorbox}
+        };
     \end{tikzpicture}
 }
 
